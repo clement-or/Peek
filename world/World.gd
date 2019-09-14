@@ -1,6 +1,6 @@
 extends Node2D
 
-var wall = preload("res://world/Wall.tscn")
+var wall = preload("res://world/obstacles/Wall.tscn")
 var cur_wall
 
 onready var human = $LifeWorld/Human
@@ -32,10 +32,11 @@ func _ready():
 	current_levels[1].global_position = Vector2.ZERO
 	current_levels[2].global_position = current_levels[1].get_node("ConnectPoint").global_position
 	
-	life_world.add_child(current_levels[1])
-	life_world.add_child(current_levels[2])
+	life_world.call_deferred("add_child",current_levels[1])
+	life_world.call_deferred("add_child",current_levels[2])
 	
-	$LifeWorld/Human.global_position = current_levels[1].get_node("StartingPoint").global_position
+	human.global_position = current_levels[1].get_node("StartingPoint").global_position
+	human.spawnpoint = human.global_position
 	connect("switched", $DeathWorld/Ghost, "_on_switched")
 
 func _process(delta):
@@ -73,7 +74,7 @@ func _on_current_level_finished():
 	
 	if !cur_wall:
 		cur_wall = wall.instance()
-		add_child(cur_wall)
+		call_deferred("add_child",cur_wall)
 	cur_wall.global_position = current_levels[0].global_position
 	
 	current_levels[1].connect("level_finished", self, "_on_current_level_finished")
@@ -83,5 +84,8 @@ func _on_current_level_finished():
 	if levels[cur_lvl_index]:
 		current_levels[2] = levels[cur_lvl_index].instance()
 		current_levels[2].global_position = current_levels[1].get_node("ConnectPoint").global_position
-		life_world.add_child(current_levels[2])
+		life_world.call_deferred("add_child",current_levels[2])
 		current_levels[2].connect("obstacle_clicked", self, "_on_Obstacle_clicked")
+
+func _on_Human_respawned():
+	human.global_position = human.spawnpoint

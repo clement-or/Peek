@@ -40,4 +40,4 @@ func unpause():
 	set_physics_process(true)
 	
 func respawn():
-	emit_signal("respawned", spawnpoint)
+	emit_signal("respawned")

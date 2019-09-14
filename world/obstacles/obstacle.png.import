@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tileset.png-d227a5720fcefd34984ad6de3734e86f.stex"
+path="res://.import/obstacle.png-37871d3d7bd6e408f0ed893812d50873.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/tileset.png"
-dest_files=[ "res://.import/tileset.png-d227a5720fcefd34984ad6de3734e86f.stex" ]
+source_file="res://world/obstacles/obstacle.png"
+dest_files=[ "res://.import/obstacle.png-37871d3d7bd6e408f0ed893812d50873.stex" ]
 
 [params]
 

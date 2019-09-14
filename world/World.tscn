@@ -33,3 +33,4 @@ gui_path = NodePath("../../CanvasLayer/GUI")
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 4 )]
 visible = false
 mouse_filter = 1
+[connection signal="respawned" from="LifeWorld/Human" to="." method="_on_Human_respawned"]

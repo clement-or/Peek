@@ -2,7 +2,8 @@
 
 [ext_resource path="res://world/Level.gd" type="Script" id=1]
 [ext_resource path="res://world/terrain_new_tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://world/Checkpoint.tscn" type="PackedScene" id=3]
+[ext_resource path="res://world/areas/Checkpoint.tscn" type="PackedScene" id=3]
+
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )

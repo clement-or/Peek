@@ -5,11 +5,12 @@ export var gravity = 900
 var velocity = Vector2(0,0)
 var mouse_in = false
 var overlap_count = 0
+var spawnpoint
 signal clicked
 signal tween_completed
 
 func _ready():
-	pass
+	spawnpoint = global_position
 
 func _physics_process(delta):
 	velocity.y += gravity*delta
@@ -30,3 +31,6 @@ func _on_input_event(viewport, event, shape_idx):
 
 func _on_Tween_tween_completed(object, key):
 	emit_signal("tween_completed")
+
+func respawn():
+	global_position = spawnpoint
