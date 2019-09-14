@@ -47,15 +47,16 @@ func grab(o):
 
 func _on_grab_finished(o, n):
 	is_controlled = true
-	obstacle.disconnect("tween_completed", self, "_on_grab_finished")
 
 func stop_grab():
 	gui.progress_bar.visible = false
+	obstacle.get_node("Tween").disconnect("tween_completed", self, "_on_grab_finished")
 	obstacle.set_physics_process(true)
 	obstacle.collision_layer = 1
 	obstacle.collision_mask = 1
 	obstacle = null
 	is_grabbing = false
+	
 	
 func _move_hands_to(point1, point2):
 	$Tween.interpolate_property($LHand, "LHand:global_position", $LHand.global_position, point1, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

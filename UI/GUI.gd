@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 onready var progress_bar = $VBoxContainer/HBoxContainer/ProgressBar
 
