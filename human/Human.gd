@@ -4,19 +4,6 @@ export var speed = 300 # px/s
 export var jump_speed = 400 # px/s
 export var gravity = 900 #px/s²
 
-"""
-enum states {
-	IDLE,
-	WALK,
-	JUMP,
-	FALL,
-	DIE,
-	SLEEP
-	}
-var state = states.IDLE
-var prev_state
-"""
-
 var velocity = Vector2(0,0)
 
 func _ready():

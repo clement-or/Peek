@@ -5,7 +5,9 @@ onready var death_world = $DeathWorld
 var life_is_active = true
 
 func _ready():
-	pass
+	var obstacles = get_tree().get_nodes_in_group("obstacles")
+	for o in obstacles:
+		o.connect("clicked", self, "on_Obstacle_clicked")
 
 func _process(delta):
 	if Input.is_action_just_pressed("switch"):
@@ -24,3 +26,8 @@ func switch():
 		death_world.get_node("Ghost").is_controlled = true
 		death_world.visible = true
 		death_world.get_node("Ghost").global_position = life_world.get_node("Human").global_position
+
+func _input(event):
+	if event.is_action_pressed("click"):
+		$LifeWorld/Obstacle.move_to(get_global_mouse_position())
+	
