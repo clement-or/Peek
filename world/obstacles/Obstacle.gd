@@ -13,6 +13,10 @@ func _ready():
 	spawnpoint = global_position
 
 func _physics_process(delta):
+	if velocity.x > 0:
+		velocity.x -= 1
+	if velocity.x < 0:
+		velocity.x += 1
 	velocity.y += gravity*delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
@@ -34,3 +38,11 @@ func _on_Tween_tween_completed(object, key):
 
 func respawn():
 	global_position = spawnpoint
+
+
+func _on_OverlapCheck_body_entered(body):
+	overlap_count += 1
+
+
+func _on_OverlapCheck_body_exited(body):
+	overlap_count -= 1

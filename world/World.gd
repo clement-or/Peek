@@ -1,5 +1,6 @@
 extends Node2D
 
+onready var scene_changer = get_node("/root/SceneChanger")
 var wall = preload("res://world/obstacles/Wall.tscn")
 var cur_wall
 
@@ -44,6 +45,8 @@ func _process(delta):
 		switch()
 
 func switch():
+	if ghost.obstacle && ghost.obstacle.overlap_count > 1:
+		return
 	life_is_active = !life_is_active
 	if life_is_active:
 		life_world.get_node("Overlay").visible = false

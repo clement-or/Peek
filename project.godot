@@ -18,6 +18,10 @@ _global_script_class_icons={
 config/name="Peek"
 config/icon="res://icon.png"
 
+[autoload]
+
+SceneChanger="*res://UI/SceneChanger.tscn"
+
 [debug]
 
 gdscript/warnings/unassigned_variable=false

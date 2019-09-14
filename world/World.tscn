@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://world/World.gd" type="Script" id=1]
 [ext_resource path="res://human/Human.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ghost/Ghost.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/GUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://world/Pause.gd" type="Script" id=5]
+[ext_resource path="res://UI/main_theme.tres" type="Theme" id=6]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -31,6 +33,7 @@ gui_path = NodePath("../../CanvasLayer/GUI")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 4 )]
+editor/display_folded = true
 margin_left = 100.0
 margin_top = 100.0
 margin_right = -100.0
@@ -53,6 +56,55 @@ visible = false
 margin_left = 1520.0
 margin_right = 1920.0
 mouse_filter = 2
+
+[node name="Pause" type="CenterContainer" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="Overlay" type="ColorRect" parent="CanvasLayer/Pause"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 1920, 1080 )
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Pause"]
+margin_left = 810.0
+margin_top = 356.0
+margin_right = 1110.0
+margin_bottom = 724.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pause/HBoxContainer"]
+margin_right = 300.0
+margin_bottom = 368.0
+alignment = 1
+
+[node name="Resume" type="Button" parent="CanvasLayer/Pause/HBoxContainer/VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 300, 0 )
+theme = ExtResource( 6 )
+text = "Resume"
+
+[node name="Menu" type="Button" parent="CanvasLayer/Pause/HBoxContainer/VBoxContainer"]
+margin_top = 124.0
+margin_right = 300.0
+margin_bottom = 244.0
+rect_min_size = Vector2( 300, 0 )
+theme = ExtResource( 6 )
+text = "Menu"
+
+[node name="Quit" type="Button" parent="CanvasLayer/Pause/HBoxContainer/VBoxContainer"]
+margin_top = 248.0
+margin_right = 300.0
+margin_bottom = 368.0
+rect_min_size = Vector2( 300, 0 )
+theme = ExtResource( 6 )
+text = "Quit"
 [connection signal="respawned" from="LifeWorld/Human" to="." method="_on_Human_respawned"]
+[connection signal="pressed" from="CanvasLayer/Pause/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/Pause" method="toggle_pause"]
+[connection signal="pressed" from="CanvasLayer/Pause/HBoxContainer/VBoxContainer/Quit" to="CanvasLayer/Pause" method="_quit_game"]
 
 [editable path="CanvasLayer/GUI"]
