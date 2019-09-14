@@ -29,11 +29,11 @@ func _ready():
 	current_levels[1].connect("obstacle_clicked", self, "_on_Obstacle_clicked")
 	current_levels[2].connect("obstacle_clicked", self, "_on_Obstacle_clicked")
 	
-	current_levels[1].global_position = Vector2.ZERO
-	current_levels[2].global_position = current_levels[1].get_node("ConnectPoint").global_position
-	
 	life_world.call_deferred("add_child",current_levels[1])
 	life_world.call_deferred("add_child",current_levels[2])
+	
+	current_levels[1].global_position = Vector2.ZERO
+	current_levels[2].global_position = current_levels[1].get_node("ConnectPoint").global_position
 	
 	human.global_position = current_levels[1].get_node("StartingPoint").global_position
 	human.spawnpoint = human.global_position
@@ -83,8 +83,8 @@ func _on_current_level_finished():
 	cur_lvl_index=1
 	if levels[cur_lvl_index]:
 		current_levels[2] = levels[cur_lvl_index].instance()
-		current_levels[2].global_position = current_levels[1].get_node("ConnectPoint").global_position
 		life_world.call_deferred("add_child",current_levels[2])
+		current_levels[2].global_position = current_levels[1].get_node("ConnectPoint").global_position
 		current_levels[2].connect("obstacle_clicked", self, "_on_Obstacle_clicked")
 
 func _on_Human_respawned():

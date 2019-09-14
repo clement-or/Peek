@@ -31,6 +31,28 @@ gui_path = NodePath("../../CanvasLayer/GUI")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 4 )]
+margin_left = 100.0
+margin_top = 100.0
+margin_right = -100.0
+margin_bottom = -100.0
+mouse_filter = 2
+
+[node name="VBoxContainer" parent="CanvasLayer/GUI" index="0"]
+margin_right = 1720.0
+margin_bottom = 880.0
+mouse_filter = 2
+
+[node name="HBoxContainer" parent="CanvasLayer/GUI/VBoxContainer" index="0"]
+margin_top = 880.0
+margin_right = 1720.0
+margin_bottom = 880.0
+mouse_filter = 2
+
+[node name="ProgressBar" parent="CanvasLayer/GUI/VBoxContainer/HBoxContainer" index="0"]
 visible = false
-mouse_filter = 1
+margin_left = 1520.0
+margin_right = 1920.0
+mouse_filter = 2
 [connection signal="respawned" from="LifeWorld/Human" to="." method="_on_Human_respawned"]
+
+[editable path="CanvasLayer/GUI"]
