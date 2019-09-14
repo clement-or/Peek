@@ -24,7 +24,12 @@ pause_mode = 0
 [node name="Obstacle" parent="LifeWorld" groups=[
 "obstacles",
 ] instance=ExtResource( 3 )]
-position = Vector2( 798.867, 302.748 )
+position = Vector2( 801.139, 305.02 )
+
+[node name="Obstacle2" parent="LifeWorld" groups=[
+"obstacles",
+] instance=ExtResource( 3 )]
+position = Vector2( 464.873, 461.793 )
 
 [node name="Floor" type="StaticBody2D" parent="LifeWorld"]
 editor/display_folded = true
