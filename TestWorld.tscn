@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://human/Human.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ghost/Ghost.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 614.111, 27.4669 )
@@ -19,6 +19,6 @@ texture = ExtResource( 1 )
 position = Vector2( 537.975, 430.731 )
 shape = SubResource( 1 )
 
-[node name="Human" parent="." instance=ExtResource( 2 )]
-position = Vector2( 137.387, 209.156 )
+[node name="Ghost" parent="." instance=ExtResource( 2 )]
+position = Vector2( 282.693, 189.113 )
 scale = Vector2( 0.5, 0.5 )

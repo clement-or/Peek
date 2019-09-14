@@ -25,7 +25,6 @@ func _ready():
 func _physics_process(delta):
 	_check_input()
 	velocity.y += gravity*delta
-	$Label.text = String(velocity.y)
 	velocity = move_and_slide(velocity, Vector2.UP, true)
 
 func _check_input():
@@ -44,3 +43,8 @@ func jump():
 func stop_jump():
 	if velocity.y < 0:
 		velocity.y += -0.5*velocity.y
+
+func pause():
+	set_physics_process(false)
+func unpause():
+	set_physics_process(true)

@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://world/World.gd" type="Script" id=1]
+[ext_resource path="res://human/Human.tscn" type="PackedScene" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://ghost/Ghost.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 548.688, 30.4509 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="LifeWorld" type="Node2D" parent="."]
+
+[node name="Overlay" type="CanvasModulate" parent="LifeWorld"]
+visible = false
+color = Color( 0.662745, 0.662745, 0.662745, 1 )
+
+[node name="Human" parent="LifeWorld" instance=ExtResource( 2 )]
+pause_mode = 0
+
+[node name="Floor" type="StaticBody2D" parent="LifeWorld"]
+editor/display_folded = true
+
+[node name="icon" type="Sprite" parent="LifeWorld/Floor"]
+position = Vector2( 510.753, 564.208 )
+scale = Vector2( 15.8985, 1 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LifeWorld/Floor"]
+position = Vector2( 504.434, 561.85 )
+shape = SubResource( 1 )
+
+[node name="DeathWorld" type="Node2D" parent="."]
+visible = false
+
+[node name="Ghost" parent="DeathWorld" instance=ExtResource( 4 )]
+position = Vector2( 266.879, 253.242 )
+collision_layer = 2
+collision_mask = 2
