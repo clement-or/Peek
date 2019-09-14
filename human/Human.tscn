@@ -24,3 +24,5 @@ shape = SubResource( 1 )
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 200, -50 )
 current = true
+smoothing_enabled = true
+smoothing_speed = 1.0

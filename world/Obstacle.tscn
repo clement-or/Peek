@@ -31,3 +31,4 @@ position = Vector2( 95.7894, 3.1579 )
 
 [node name="Tween" type="Tween" parent="."]
 [connection signal="input_event" from="OverlapCheck" to="." method="_on_input_event"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

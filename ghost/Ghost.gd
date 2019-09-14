@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var speed = 300 # px/s
 export var is_controlled = false
-export var grab_distance = 1000 #px
+export var grab_distance = 300 #px
 export(NodePath) var gui_path
 
 onready var gui = get_node(gui_path)
@@ -42,15 +42,15 @@ func grab(o):
 	obstacle.set_physics_process(false)
 	obstacle.collision_layer = 3
 	obstacle.collision_mask = 3
-	obstacle.get_node("Tween").connect("tween_completed", self, "_on_grab_finished")
+	obstacle.connect("tween_completed", self, "_on_grab_finished")
 	obstacle.move_to($GrabPoint.global_position)
 
-func _on_grab_finished(o, n):
+func _on_grab_finished():
 	is_controlled = true
 
 func stop_grab():
 	gui.progress_bar.visible = false
-	obstacle.get_node("Tween").disconnect("tween_completed", self, "_on_grab_finished")
+	obstacle.disconnect("tween_completed", self, "_on_grab_finished")
 	obstacle.set_physics_process(true)
 	obstacle.collision_layer = 1
 	obstacle.collision_mask = 1

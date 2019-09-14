@@ -5,6 +5,9 @@ export var jump_speed = 400 # px/s
 export var gravity = 900 #px/s²
 
 var velocity = Vector2(0,0)
+var spawnpoint = Vector2()
+
+signal respawned
 
 func _ready():
 	pass
@@ -35,3 +38,6 @@ func pause():
 	set_physics_process(false)
 func unpause():
 	set_physics_process(true)
+	
+func respawn():
+	emit_signal("respawned", spawnpoint)

@@ -6,6 +6,7 @@ var velocity = Vector2(0,0)
 var mouse_in = false
 var overlap_count = 0
 signal clicked
+signal tween_completed
 
 func _ready():
 	pass
@@ -25,3 +26,7 @@ func _on_input_event(viewport, event, shape_idx):
 	and event.button_index == BUTTON_LEFT \
 	and event.is_pressed():
 		emit_signal("clicked", self)
+
+
+func _on_Tween_tween_completed(object, key):
+	emit_signal("tween_completed")
