@@ -4,6 +4,7 @@ export var gravity = 900
 
 var velocity = Vector2(0,0)
 var mouse_in = false
+var overlap_count = 0
 signal clicked
 
 func _ready():

@@ -55,3 +55,13 @@ func _move_hands_to(point1, point2):
 	$Tween.interpolate_property($LHand, "LHand:global_position", $LHand.global_position, point1, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	#$Tween.interpolate_property($RHand, "RHand:global_position", $RHand.global_position, point2, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
+
+func _on_switched(is_life):
+	if is_life:
+		$GrabTimer.start()
+	if !is_life:
+		if obstacle: stop_grab()
+		$GrabTimer.stop()
+
+func _on_GrabTimer_timeout():
+	stop_grab()

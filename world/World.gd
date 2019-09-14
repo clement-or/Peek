@@ -6,11 +6,13 @@ onready var ghost = $DeathWorld/Ghost
 onready var life_world = $LifeWorld
 onready var death_world = $DeathWorld
 var life_is_active = true
+signal switched
 
 func _ready():
 	var obstacles = get_tree().get_nodes_in_group("obstacles")
 	for o in obstacles:
 		o.connect("clicked", self, "_on_Obstacle_clicked")
+	connect("switched", $DeathWorld/Ghost, "_on_switched")
 
 func _process(delta):
 	if Input.is_action_just_pressed("switch"):
@@ -20,15 +22,17 @@ func switch():
 	life_is_active = !life_is_active
 	if life_is_active:
 		life_world.get_node("Overlay").visible = false
-		life_world.get_node("Human").unpause()
-		death_world.get_node("Ghost").is_controlled = false
+		human.unpause()
+		ghost.is_controlled = false
+		ghost.velocity = Vector2.ZERO
 		death_world.visible = false
 	else:
 		life_world.get_node("Overlay").visible = true
-		life_world.get_node("Human").pause()
-		death_world.get_node("Ghost").is_controlled = true
+		human.pause()
+		ghost.is_controlled = true
 		death_world.visible = true
-		death_world.get_node("Ghost").global_position = life_world.get_node("Human").global_position
+		ghost.global_position = human.global_position
+	emit_signal("switched", life_is_active)
 
 func _on_Obstacle_clicked(obstacle):
 	if life_is_active:

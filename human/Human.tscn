@@ -20,3 +20,8 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2.84402, 0 )
 shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 200, -50 )
+current = true
+zoom = Vector2( 1.5, 1.5 )

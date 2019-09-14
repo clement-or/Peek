@@ -31,3 +31,8 @@ texture = ExtResource( 3 )
 
 [node name="GrabPoint" type="Position2D" parent="."]
 position = Vector2( 0, -154.327 )
+
+[node name="GrabTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+[connection signal="timeout" from="GrabTimer" to="." method="_on_GrabTimer_timeout"]
