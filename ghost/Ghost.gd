@@ -40,8 +40,8 @@ func grab(o):
 	
 	obstacle = o
 	obstacle.set_physics_process(false)
-	obstacle.collision_layer = 2
-	obstacle.collision_mask = 2
+	obstacle.collision_layer = 3
+	obstacle.collision_mask = 3
 	obstacle.get_node("Tween").connect("tween_completed", self, "_on_grab_finished")
 	obstacle.move_to($GrabPoint.global_position)
 
