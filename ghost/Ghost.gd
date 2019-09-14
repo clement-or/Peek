@@ -3,7 +3,9 @@ extends KinematicBody2D
 export var speed = 300 # px/s
 export var is_controlled = false
 export var grab_distance = 1000 #px
+export(NodePath) var gui_path
 
+onready var gui = get_node(gui_path)
 var is_grabbing = false
 var obstacle
 
@@ -17,13 +19,14 @@ func _physics_process(delta):
 		_check_input()
 	if is_grabbing && obstacle:
 		obstacle.global_position = $GrabPoint.global_position
+	display_timer()
 	velocity = move_and_slide(velocity, Vector2.UP, true)
 
 func _check_input():
 	var x_direction = int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"))
-	velocity.x = lerp(velocity.x, x_direction*speed, 0.2)
+	velocity.x = lerp(velocity.x, x_direction*speed, 0.8)
 	var y_direction = int(Input.is_action_pressed("ui_down"))-int(Input.is_action_pressed("ui_up"))
-	velocity.y = lerp(velocity.y, y_direction*speed, 0.2)
+	velocity.y = lerp(velocity.y, y_direction*speed, 0.8)
 
 func grab(o):
 	if o == obstacle: 
@@ -36,6 +39,7 @@ func grab(o):
 	velocity = Vector2.ZERO
 	
 	obstacle = o
+	obstacle.set_physics_process(false)
 	obstacle.collision_layer = 2
 	obstacle.collision_mask = 2
 	obstacle.get_node("Tween").connect("tween_completed", self, "_on_grab_finished")
@@ -43,8 +47,10 @@ func grab(o):
 
 func _on_grab_finished(o, n):
 	is_controlled = true
+	obstacle.disconnect("tween_completed", self, "_on_grab_finished")
 
 func stop_grab():
+	gui.progress_bar.visible = false
 	obstacle.set_physics_process(true)
 	obstacle.collision_layer = 1
 	obstacle.collision_mask = 1
@@ -57,11 +63,16 @@ func _move_hands_to(point1, point2):
 	$Tween.start()
 
 func _on_switched(is_life):
-	if is_life:
+	if is_life && is_grabbing:
 		$GrabTimer.start()
+		gui.progress_bar.visible = true
 	if !is_life:
 		if obstacle: stop_grab()
 		$GrabTimer.stop()
 
 func _on_GrabTimer_timeout():
 	stop_grab()
+
+func display_timer():
+	if gui && !$GrabTimer.is_stopped():
+		gui.set_progress($GrabTimer.time_left)
