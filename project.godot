@@ -39,7 +39,7 @@ gdscript/warnings/property_used_as_function=false
 window/size/width=1920
 window/size/height=1080
 window/stretch/mode="2d"
-window/stretch/aspect="keep_width"
+window/stretch/aspect="keep"
 
 [input]
 
