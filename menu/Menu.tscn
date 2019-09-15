@@ -33,6 +33,9 @@ tile_data = PoolIntArray( -65536, 0, 0, -65535, 0, 1, -65534, 0, 131076, -65533,
 [node name="Human" parent="Background" instance=ExtResource( 3 )]
 position = Vector2( 1564.67, 679.315 )
 
+[node name="Camera2D" parent="Background/Human" index="2"]
+current = false
+
 [node name="Menu" type="CanvasLayer" parent="."]
 pause_mode = 2
 
@@ -174,3 +177,5 @@ align = 1
 [connection signal="pressed" from="Menu/Control/HBoxContainer/MarginContainer/CenterContainer/VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Menu/Control/HBoxContainer/MarginContainer/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Menu/Control/Credits/Close" to="." method="_on_Close_pressed"]
+
+[editable path="Background/Human"]

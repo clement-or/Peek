@@ -25,12 +25,11 @@ func _ready():
 	current_levels.resize(3)
 	current_levels[1] = levels[0].instance()
 	current_levels[2] = levels[1].instance()
+	life_world.add_child(current_levels[1])
+	life_world.add_child(current_levels[2])
 	
 	current_levels[1].connect("level_finished", self, "_on_current_level_finished")
 	current_levels[1].connect("obstacle_clicked", self, "_on_Obstacle_clicked")
-	
-	life_world.call_deferred("add_child",current_levels[1])
-	life_world.call_deferred("add_child",current_levels[2])
 	
 	current_levels[1].global_position = Vector2.ZERO
 	current_levels[2].global_position = current_levels[1].get_node("ConnectPoint").global_position
@@ -38,6 +37,8 @@ func _ready():
 	human.global_position = current_levels[1].get_node("StartingPoint").global_position
 	human.spawnpoint = human.global_position
 	connect("switched", $DeathWorld/Ghost, "_on_switched")
+	
+	get_tree().paused = false
 
 func _process(delta):
 	if Input.is_action_just_pressed("switch"):
