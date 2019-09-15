@@ -25,7 +25,7 @@ collision_mask = 5
 visible = false
 
 [node name="Ghost" parent="DeathWorld" instance=ExtResource( 3 )]
-position = Vector2( 266.879, 253.242 )
+position = Vector2( 0, -2.20057 )
 collision_layer = 2
 collision_mask = 2
 gui_path = NodePath("../../CanvasLayer/GUI")

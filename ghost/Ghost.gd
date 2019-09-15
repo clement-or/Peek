@@ -5,14 +5,16 @@ export var is_controlled = false
 export var grab_distance = 300 #px
 export(NodePath) var gui_path
 
+onready var sm = $AnimTree.get("parameters/playback")
 onready var gui = get_node(gui_path)
 var is_grabbing = false
 var obstacle
+var is_holding = false
 
 var velocity = Vector2(0,0)
 
 func _ready():
-	pass
+	sm.start("idle")
 
 func _physics_process(delta):
 	if is_controlled:
@@ -27,6 +29,18 @@ func _check_input():
 	velocity.x = lerp(velocity.x, x_direction*speed, 0.8)
 	var y_direction = int(Input.is_action_pressed("ui_down"))-int(Input.is_action_pressed("ui_up"))
 	velocity.y = lerp(velocity.y, y_direction*speed, 0.8)
+	sm.travel("idle")
+	"""
+	if is_holding:
+		sm.travel("hold")
+	else:
+		if Input.is_action_pressed("ui_right"):
+			sm.travel("move_r")
+		elif Input.is_action_pressed("ui_left"):
+			sm.travel("move_l")
+		else:
+			sm.travel("idle")
+	"""
 
 func grab(o):
 	if o == obstacle: 
