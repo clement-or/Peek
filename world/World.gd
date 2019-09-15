@@ -28,7 +28,6 @@ func _ready():
 	
 	current_levels[1].connect("level_finished", self, "_on_current_level_finished")
 	current_levels[1].connect("obstacle_clicked", self, "_on_Obstacle_clicked")
-	current_levels[2].connect("obstacle_clicked", self, "_on_Obstacle_clicked")
 	
 	life_world.call_deferred("add_child",current_levels[1])
 	life_world.call_deferred("add_child",current_levels[2])

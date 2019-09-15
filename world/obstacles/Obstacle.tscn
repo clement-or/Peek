@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://world/obstacles/Obstacle.gd" type="Script" id=1]
 [ext_resource path="res://world/obstacles/obstacle.png" type="Texture" id=2]
-[ext_resource path="res://fonts/roboto.tres" type="DynamicFont" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 127, 128 )
@@ -41,14 +40,6 @@ position = Vector2( 95.7894, 3.1579 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-
-[node name="Label" type="Label" parent="."]
-margin_left = -31.0228
-margin_top = -344.149
-margin_right = 8.97723
-margin_bottom = -273.149
-custom_fonts/font = ExtResource( 3 )
-text = "3"
 [connection signal="body_entered" from="OverlapCheck" to="." method="_on_OverlapCheck_body_entered"]
 [connection signal="body_exited" from="OverlapCheck" to="." method="_on_OverlapCheck_body_exited"]
 [connection signal="input_event" from="OverlapCheck" to="." method="_on_input_event"]

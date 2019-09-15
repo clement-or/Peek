@@ -1,0 +1,176 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://menu/Menu.gd" type="Script" id=1]
+[ext_resource path="res://world/terrain_new_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://human/Human.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/main_theme.tres" type="Theme" id=4]
+[ext_resource path="res://fonts/Roboto-Bold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://fonts/GloriaHallelujah-Regular.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 120
+extra_spacing_char = 20
+font_data = ExtResource( 6 )
+
+[node name="Menu" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Background"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 256, 256 )
+format = 1
+tile_data = PoolIntArray( -65536, 0, 0, -65535, 0, 1, -65534, 0, 131076, -65533, 0, 131076, -65532, 0, 131076, -65531, 0, 1, -65530, 0, 131076, -65529, 0, 131076, -65528, 0, 2, 0, 0, 131072, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 131073, 5, 0, 4, 6, 0, 4, 7, 0, 5, 8, 0, 65539, 65543, 0, 65536, 65544, 0, 65539, 131079, 0, 65541, 131080, 0, 65539, 196608, 0, 0, 196609, 0, 131076, 196610, 0, 131076, 196611, 0, 131076, 196612, 0, 1, 196613, 0, 1, 196614, 0, 131076, 196615, 0, 131077, 196616, 0, 65538, 262144, 0, 131072, 262145, 0, 4, 262146, 0, 4, 262147, 0, 131073, 262148, 0, 131073, 262149, 0, 131073, 262150, 0, 131073, 262151, 0, 131073, 262152, 0, 131074 )
+
+[node name="Human" parent="Background" instance=ExtResource( 3 )]
+position = Vector2( 1564.67, 679.315 )
+
+[node name="Menu" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="Control" type="Control" parent="Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/Control/HBoxContainer"]
+margin_right = 600.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 600, 0 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu/Control/HBoxContainer/MarginContainer"]
+margin_right = 600.0
+margin_bottom = 1080.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Control/HBoxContainer/MarginContainer/CenterContainer"]
+margin_left = 150.0
+margin_top = 356.0
+margin_right = 450.0
+margin_bottom = 724.0
+
+[node name="Play" type="Button" parent="Menu/Control/HBoxContainer/MarginContainer/CenterContainer/VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 300, 0 )
+theme = ExtResource( 4 )
+custom_styles/normal = SubResource( 1 )
+custom_constants/hseparation = 5
+text = "Play"
+
+[node name="Credits" type="Button" parent="Menu/Control/HBoxContainer/MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 124.0
+margin_right = 300.0
+margin_bottom = 244.0
+rect_min_size = Vector2( 300, 0 )
+theme = ExtResource( 4 )
+custom_styles/normal = SubResource( 1 )
+custom_constants/hseparation = 5
+text = "Credits"
+
+[node name="Quit" type="Button" parent="Menu/Control/HBoxContainer/MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 248.0
+margin_right = 300.0
+margin_bottom = 368.0
+rect_min_size = Vector2( 300, 0 )
+theme = ExtResource( 4 )
+custom_styles/normal = SubResource( 1 )
+custom_constants/hseparation = 5
+text = "Quit"
+
+[node name="Credits" type="Popup" parent="Menu/Control"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="Menu/Control/Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.780392 )
+
+[node name="Title" type="Label" parent="Menu/Control/Credits"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -136.0
+margin_right = 136.0
+margin_bottom = 120.0
+theme = ExtResource( 4 )
+text = "CREDITS"
+align = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu/Control/Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 159.0
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]
+\"Peek\"
+A game created for the Talkative Server Worldwide Game Jam
+
+Game Design & Lead Development
+Clément \"Topy\" Orlandini
+
+Art
+Paul Rousseau
+
+Music & Sound Design
+Tristan Clément
+
+Special thanks to
+The french Godot Discord server for their help
+[center]"
+text = "
+\"Peek\"
+A game created for the Talkative Server Worldwide Game Jam
+
+Game Design & Lead Development
+Clément \"Topy\" Orlandini
+
+Art
+Paul Rousseau
+
+Music & Sound Design
+Tristan Clément
+
+Special thanks to
+The french Godot Discord server for their help
+"
+
+[node name="Close" type="Button" parent="Menu/Control/Credits"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -139.369
+margin_top = 38.9474
+margin_right = -39.3687
+margin_bottom = 158.947
+rect_min_size = Vector2( 100, 0 )
+theme = ExtResource( 4 )
+text = "X"
+
+[node name="Title" type="Label" parent="Menu/Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -178.5
+margin_right = 178.5
+margin_bottom = 239.0
+custom_fonts/font = SubResource( 3 )
+text = "PEEK"
+align = 1
+[connection signal="pressed" from="Menu/Control/HBoxContainer/MarginContainer/CenterContainer/VBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Menu/Control/HBoxContainer/MarginContainer/CenterContainer/VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="Menu/Control/HBoxContainer/MarginContainer/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Menu/Control/Credits/Close" to="." method="_on_Close_pressed"]

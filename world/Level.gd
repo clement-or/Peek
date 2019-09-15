@@ -10,6 +10,9 @@ func _ready():
 
 func _on_Checkpoint_level_finished():
 	emit_signal("level_finished")
+	var obstacles = $Obstacles.get_children()
+	for o in obstacles:
+		o.call_deferred("queue_free")
 
 func _on_Obstacle_clicked(obstacle):
 	emit_signal("obstacle_clicked", obstacle)
